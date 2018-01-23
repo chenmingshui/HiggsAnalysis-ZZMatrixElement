@@ -119,7 +119,9 @@ void Mela::build(double mh_){
   if (myVerbosity_>=TVar::DEBUG) cout << "Create symlinks to the required files if these are not already present:" << endl;
 
 #ifdef _melapkgpathstr_
-  const string MELAPKGPATH = _melapkgpathstr_;
+  //const string MELAPKGPATH = _melapkgpathstr_;
+  string MELAPKGPATH = std::getenv( "CMSSW_BASE" );
+  MELAPKGPATH+="/src/ZZMatrixElement/MELA/";
   if (myVerbosity_>=TVar::DEBUG)  cout << "\t- MELA package path: " << MELAPKGPATH << endl;
 #else
   cout << "MELA package path is undefined! Please modify the makefle or the makefile-equivalent!" << endl;
@@ -2263,7 +2265,9 @@ MelaPConstant* Mela::getPConstantHandle(
   // Get data/ path
   if (myVerbosity_>=TVar::DEBUG) cout << "Mela::getPConstantHandle: relpath and spline name: " << relpath << ", " << spname << endl;
 #ifdef _melapkgpathstr_
-  const string MELAPKGPATH = _melapkgpathstr_;
+  //const string MELAPKGPATH = _melapkgpathstr_;
+  string MELAPKGPATH = std::getenv( "CMSSW_BASE" );
+  MELAPKGPATH+="/src/ZZMatrixElement/MELA/";
 #else
   cout << "Mela::getPConstantHandle: MELA package path is undefined! Please modify the makefle or the makefile-equivalent!" << endl;
   assert(0);
